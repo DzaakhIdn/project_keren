@@ -1,9 +1,23 @@
-import Hero06 from "@/components/hero-06/hero-06";
+
+import Hero from "@/components/Hero/hero";
+import { Space_Grotesk } from "next/font/google";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export default function Home() {
   return (
     <>
-      <Hero06 />
+    <html>
+      <head>
+        <title>Aplikasi Sekolah</title>
+      </head>
+      <body className={spaceGrotesk.className}>
+        <Hero />
+      </body>
+    </html>
     </>
   );
 }

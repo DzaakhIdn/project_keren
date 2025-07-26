@@ -139,7 +139,9 @@ const Particles: React.FC<ParticlesProps> = ({
       canvasRef.current.height = canvasSize.current.h * dpr;
       canvasRef.current.style.width = `${canvasSize.current.w}px`;
       canvasRef.current.style.height = `${canvasSize.current.h}px`;
-      context.current.scale(dpr, dpr);
+      // context.current.scale(dpr, dpr);
+      context.current.setTransform(1, 0, 0, 1, 0, 0); // Reset transform
+      context.current.scale(dpr, dpr); // Apply DPR scaling
     }
   };
 
@@ -169,6 +171,7 @@ const Particles: React.FC<ParticlesProps> = ({
   };
 
   const rgb = hexToRgb(color);
+  console.log("rgb", rgb);
 
   const drawCircle = (circle: Circle, update = false) => {
     if (context.current) {
@@ -192,7 +195,7 @@ const Particles: React.FC<ParticlesProps> = ({
         0,
         0,
         canvasSize.current.w,
-        canvasSize.current.h,
+        canvasSize.current.h
       );
     }
   };
@@ -211,7 +214,7 @@ const Particles: React.FC<ParticlesProps> = ({
     start1: number,
     end1: number,
     start2: number,
-    end2: number,
+    end2: number
   ): number => {
     const remapped =
       ((value - start1) * (end2 - start2)) / (end1 - start1) + start2;
@@ -230,7 +233,7 @@ const Particles: React.FC<ParticlesProps> = ({
       ];
       const closestEdge = edge.reduce((a, b) => Math.min(a, b));
       const remapClosestEdge = parseFloat(
-        remapValue(closestEdge, 0, 20, 0, 1).toFixed(2),
+        remapValue(closestEdge, 0, 20, 0, 1).toFixed(2)
       );
       if (remapClosestEdge > 1) {
         circle.alpha += 0.02;
