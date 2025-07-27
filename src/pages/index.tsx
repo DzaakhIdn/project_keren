@@ -10,14 +10,7 @@ const spaceGrotesk = Space_Grotesk({
 export default function Home() {
   return (
     <>
-    <html>
-      <head>
-        <title>Aplikasi Sekolah</title>
-      </head>
-      <body className={spaceGrotesk.className}>
-        <Hero />
-      </body>
-    </html>
+    <Hero />
     </>
   );
 }
