@@ -1,43 +1,79 @@
-import { ArrowUpRight, CirclePlay } from "lucide-react";
+// import { ArrowUpRight, CirclePlay } from "lucide-react";
 import { BackgroundPattern } from "./background-pattern";
 import BlurText from "@/animate/BlurText";
-import { Montserrat } from "next/font/google";
-import { Badge } from "../ui/badge";
-import ButtonSec from "../ui/button-sec";
+import { Montserrat, Space_Grotesk } from "next/font/google";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import SplitText from "@/animate/SplitText";
+import { motion } from "motion/react";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 const Hero = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 flex-col gap-10">
+    <div className="min-h-screen flex items-center justify-center px-6 flex-col gap-9">
       <BackgroundPattern />
-      <Badge className=" bg-gradient-to-bl from-[#1f5bdd] via-[#142447] to-[#2289ff] rounded-full py-1 border-none">
-        Just released v1.0.0
+      <Badge
+        variant={"secondary"}
+        className="bg-blue-500 text-white dark:bg-blue-600"
+      >
+        Official Website
       </Badge>
       <BlurText
-        text="Selamat Datang di Website Official HSI Boarding School"
+        text={`Selamat Datang di HSI Boarding School`}
         delay={150}
         animateBy="words"
         direction="top"
-        className="text-6xl font-extrabold text-center text-slate-900 w-[60%] justify-center"
+        className={`${spaceGrotesk.className} text-5xl font-extrabold text-center text-slate-900 justify-center`}
       />
-
-      <p
-        className={`text-lg text-center text-slate-600 ${montserrat.className} w-[60%]`}
-      >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum rerum
-        nostrum cum dicta culpa cupiditate perferendis et illum. Natus, dolore
-        suscipit accusamus quas sit perferendis repellendus totam aliquid
-        deleniti illo voluptatum amet excepturi quos. Recusandae aspernatur
-        porro facere iste pariatur debitis at dicta voluptatem dolorum fugiat
-      </p>
-      <div className="flex items-center justify-center gap-4">
-        <ButtonSec>
-          Play Video
-        </ButtonSec>
+      <SplitText
+        text="Kami adalah lembaga pendidikan yang mengedepankan nilai-nilai keislaman dan akademik."
+        className={`text-md text-centernd text-slate-700 ${montserrat.className}`}
+        delay={100}
+        duration={1.3}
+        ease="power3.out"
+        splitType="words"
+        from={{ opacity: 0, y: 40 }}
+        to={{ opacity: 1, y: 0 }}
+        threshold={0.1}
+        rootMargin="-100px"
+        textAlign="center"
+      />
+      <div className="flex items-center justify-center gap-5">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -50 }}
+          transition={{ duration: 1.3 }}
+        >
+          <Button
+            variant="default"
+            className={`${montserrat.className} text-md bg-blue-500 hover:bg-blue-600 hover:cursor-pointer py-7 px-8`}
+          >
+            Kenali Kami
+          </Button>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -50 }}
+          transition={{ duration: 1.3, delay: 0.5 }}
+        >
+          <Button
+            variant="outline"
+            className={`${montserrat.className} text-md py-7 px-8 hover:cursor-pointer`}
+          >
+            Daftar Sekarang
+          </Button>
+        </motion.div>
       </div>
     </div>
   );
