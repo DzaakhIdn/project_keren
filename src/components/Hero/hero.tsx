@@ -1,7 +1,7 @@
 // import { ArrowUpRight, CirclePlay } from "lucide-react";
 import { BackgroundPattern } from "./background-pattern";
 import BlurText from "@/animate/BlurText";
-import { Montserrat, Space_Grotesk } from "next/font/google";
+import { Montserrat, Space_Grotesk, Poppins } from "next/font/google";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -18,17 +18,22 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600", "700"],
 });
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "400", "500", "600", "700"],
+});
+
 const Hero = () => {
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex flex-col justify-center align-center gap-5">
       <BackgroundPattern />
-      <div className="logo">
+      <div className="logo flex items-center justify-center">
         <Image
           src="/important/logo.png"
           alt="logo"
           width={100}
           height={100}
-          className=""
+          className="w-auto h-auto"
         />
       </div>
       <div className="flex items-center justify-center px-6 flex-col gap-9">
@@ -85,6 +90,9 @@ const Hero = () => {
               Daftar Sekarang
             </Button>
           </motion.div>
+        </div>
+        <div>
+          <p className={`${poppins.className} text-sm font-light`}>HSI Boarding School &copy; copyright 2025</p>
         </div>
       </div>
     </div>
